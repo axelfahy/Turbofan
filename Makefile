@@ -26,6 +26,14 @@ data/processed:
 			-o $@ \
 			python src/data/preprocess.py data/interim $@
 
+.PHONY: reports/figures
+reports/figures:
+	dvc run -n exploration \
+		    -d src/visualization/exploration.py \
+			-d data/interim \
+			-o $@ \
+			python src/visualization/exploration.py data/interim $@
+
 .PHONY: lint
 lint:
 	pylint src

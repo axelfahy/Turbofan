@@ -20,3 +20,10 @@ stages:
     - src/data/preprocess.py
     outs:
     - data/processed
+  exploration:
+    cmd: python src/visualization/exploration.py data/interim reports/figures
+    deps:
+    - data/interim
+    - src/visualization/exploration.py
+    outs:
+    - reports/figures
