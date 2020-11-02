@@ -1,0 +1,20 @@
+download:
+  cmd: python src/data/download.py https://ti.arc.nasa.gov/c/6/ data/raw
+  deps:
+  - path: https://ti.arc.nasa.gov/c/6/
+    etag: '"6ac30eb-bd9afa-4585b40300640"'
+  - path: src/data/download.py
+    md5: 5d30dda99dd23c0c1c49f92672083ebb
+  outs:
+  - path: data/raw
+    md5: 765e3a91658a830570861f098beb4244.dir
+create_dataset:
+  cmd: python src/data/create_dataset.py data/raw data/interim
+  deps:
+  - path: data/raw
+    md5: 765e3a91658a830570861f098beb4244.dir
+  - path: src/data/create_dataset.py
+    md5: d1ad20301f58d17b81322661261dd5f0
+  outs:
+  - path: data/interim
+    md5: 743fae2926ca86bdef4bcb1886bcb72e.dir

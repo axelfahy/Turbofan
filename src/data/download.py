@@ -27,6 +27,7 @@ def download_file(url: str, folder: Path):
         Folder to store the downloaded dataset.
     """
     logger.info(f'Downloading from {url} to {folder}')
+    Path(folder).mkdir(exist_ok=True)
     try:
         response = requests.get(url)
     except requests.exceptions.HTTPError as errh:

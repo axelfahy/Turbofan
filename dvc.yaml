@@ -1,0 +1,15 @@
+stages:
+  download:
+    cmd: python src/data/download.py https://ti.arc.nasa.gov/c/6/ data/raw
+    deps:
+    - https://ti.arc.nasa.gov/c/6/
+    - src/data/download.py
+    outs:
+    - data/raw
+  create_dataset:
+    cmd: python src/data/create_dataset.py data/raw data/interim
+    deps:
+    - data/raw
+    - src/data/create_dataset.py
+    outs:
+    - data/interim
