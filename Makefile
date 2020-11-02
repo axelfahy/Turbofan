@@ -11,12 +11,20 @@ data/raw:
 		    python src/data/download.py $(TURBOFAN_URL) $@
 
 .PHONY: data/interim
-data/interim: data/raw
+data/interim:
 	dvc run -n create_dataset \
 		    -d src/data/create_dataset.py \
-			-d $< \
+			-d data/raw \
 			-o $@ \
-			python src/data/create_dataset.py $< $@
+			python src/data/create_dataset.py data/raw $@
+
+.PHONY: data/processed
+data/processed:
+	dvc run -n preprocess \
+		    -d src/data/preprocess.py \
+			-d data/interim \
+			-o $@ \
+			python src/data/preprocess.py data/interim $@
 
 .PHONY: lint
 lint:

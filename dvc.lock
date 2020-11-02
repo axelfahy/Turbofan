@@ -18,3 +18,13 @@ create_dataset:
   outs:
   - path: data/interim
     md5: 743fae2926ca86bdef4bcb1886bcb72e.dir
+preprocess:
+  cmd: python src/data/preprocess.py data/interim data/processed
+  deps:
+  - path: data/interim
+    md5: 743fae2926ca86bdef4bcb1886bcb72e.dir
+  - path: src/data/preprocess.py
+    md5: 0f510cd9d6268b8ed55103538684dd91
+  outs:
+  - path: data/processed
+    md5: b1cb12da5cacbab30e7f170eb8108744.dir

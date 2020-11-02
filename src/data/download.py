@@ -9,7 +9,7 @@ from loguru import logger
 import requests
 
 logger.add(
-    Path('/tmp') / f"turbofan_create_dataset_{datetime.now().strftime('%Y%m%d-%H%M%S')}.log")
+    Path('/tmp') / f"turbofan_download_{datetime.now().strftime('%Y%m%d-%H%M%S')}.log")
 
 
 @click.command()
