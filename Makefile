@@ -1,38 +1,17 @@
-.PHONY: all clean test
+# Makefile for unittest and linter.
 
-TURBOFAN_URL = "https://ti.arc.nasa.gov/c/6/"
+.PHONY: test
+test: code style lint
 
-.PHONY: data/raw
-data/raw:
-	dvc run -n download \
-		    -d src/data/download.py \
-	        -d $(TURBOFAN_URL) \
-			-o $@ \
-		    python src/data/download.py $(TURBOFAN_URL) $@
+.PHONY: code
+code:
+	pytest
 
-.PHONY: data/interim
-data/interim:
-	dvc run -n create_dataset \
-		    -d src/data/create_dataset.py \
-			-d data/raw \
-			-o $@ \
-			python src/data/create_dataset.py data/raw $@
-
-.PHONY: data/processed
-data/processed:
-	dvc run -n preprocess \
-		    -d src/data/preprocess.py \
-			-d data/interim \
-			-o $@ \
-			python src/data/preprocess.py data/interim $@
-
-.PHONY: reports/figures
-reports/figures:
-	dvc run -n exploration \
-		    -d src/visualization/exploration.py \
-			-d data/interim \
-			-o $@ \
-			python src/visualization/exploration.py data/interim $@
+.PHONY: coverage
+coverage:
+	rm -rf coverage_html_report
+	coverage run -m unittest discover -s tests
+	coverage html
 
 .PHONY: lint
 lint:

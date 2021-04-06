@@ -89,7 +89,7 @@ def create_dataset(input_folder: Path, output_folder: Path):
         Output folder to store the processed data, as parquet.
     """
     logger.info(f'Creating dataset from {input_folder} to {output_folder}')
-    Path(output_folder).mkdir(exist_ok=True)
+    Path(output_folder).mkdir(parents=True, exist_ok=True)
 
     create_train_set(Path(input_folder), Path(output_folder) / 'df_train.parquet')
     create_test_set(Path(input_folder), Path(output_folder) / 'df_test.parquet')

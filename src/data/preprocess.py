@@ -29,7 +29,7 @@ def preprocess(input_folder: Path, output_folder: Path):
         Output folder to store the processed data, as parquet.
     """
     logger.info(f'Preprocessing of dataset from {input_folder} to {output_folder}')
-    Path(output_folder).mkdir(exist_ok=True)
+    Path(output_folder).mkdir(parents=True, exist_ok=True)
 
     # Load the data.
     df_train = (pd.read_parquet(Path(input_folder) / 'df_train.parquet')

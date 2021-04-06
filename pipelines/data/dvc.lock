@@ -1,0 +1,63 @@
+schema: '2.0'
+stages:
+  download:
+    cmd: python ../../src/data/download.py https://ti.arc.nasa.gov/c/6/ ../../data/raw
+    deps:
+    - path: ../../src/data/download.py
+      md5: 55d67e3cc17ee8cdc407b3b9bc1d5881
+      size: 1385
+    - path: https://ti.arc.nasa.gov/c/6/
+      etag: '"6ac30eb-bd9afa-4585b40300640"'
+      size: 12425978
+    outs:
+    - path: ../../data/raw
+      md5: 765e3a91658a830570861f098beb4244.dir
+      size: 45349906
+      nfiles: 14
+  create_dataset:
+    cmd: python ../../src/data/create_dataset.py ../../data/raw ../../data/interim
+    deps:
+    - path: ../../data/raw
+      md5: 765e3a91658a830570861f098beb4244.dir
+      size: 45349906
+      nfiles: 14
+    - path: ../../src/data/create_dataset.py
+      md5: ed239ce2672750b7db02df3f5522c805
+      size: 3493
+    outs:
+    - path: ../../data/interim
+      md5: 49dd088630efa77017e40b6fea96ecaf.dir
+      size: 9156073
+      nfiles: 2
+  preprocess:
+    cmd: python ../../src/data/preprocess.py ../../data/interim ../../data/processed
+    deps:
+    - path: ../../data/interim
+      md5: 49dd088630efa77017e40b6fea96ecaf.dir
+      size: 9156073
+      nfiles: 2
+    - path: ../../src/data/preprocess.py
+      md5: 5ded845611039b26fa6e11806586633f
+      size: 2637
+    outs:
+    - path: ../../data/processed
+      md5: 6459672e32c45b0eeb70da56202cb537.dir
+      size: 8879793
+      nfiles: 2
+  exploration:
+    cmd: python ../../src/visualization/exploration.py ../../data/interim ../../reports/figures
+    deps:
+    - path: ../../data/interim
+      md5: 49dd088630efa77017e40b6fea96ecaf.dir
+      size: 9156073
+      nfiles: 2
+    - path: ../../src/visualization/exploration.py
+      md5: 2cc308a13834dd0bac88fbfad7f2b510
+      size: 2736
+    outs:
+    - path: ../../reports/figures/00_distribution_label_train.png
+      md5: 35d4013dda0f45a79ed7582126ebc0f2
+      size: 28499
+    - path: ../../reports/figures/01_distribution_label_test.png
+      md5: c5c95edfaa122e662746293ffada8b15
+      size: 22794
