@@ -15,12 +15,12 @@ coverage:
 
 .PHONY: lint
 lint:
-	pylint src
-	bandit -r src -ll
+	pylint turbofan
+	bandit -r turbofan -ll
 
 .PHONY: style
 style:
 	flake8
-	mypy src
-	pycodestyle src
-	pydocstyle src
+	mypy turbofan
+	pycodestyle turbofan
+	pydocstyle turbofan

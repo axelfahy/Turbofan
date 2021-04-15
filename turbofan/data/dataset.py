@@ -1,14 +1,10 @@
-"""CLI to create the dataset."""
-from datetime import datetime
+"""Dataset functions."""
+import logging
 from pathlib import Path
 
-import click
-from loguru import logger
 import pandas as pd
 
-logger.add(
-    Path('/tmp') / f"turbofan_create_dataset_{datetime.now().strftime('%Y%m%d-%H%M%S')}.log")
-
+logger = logging.getLogger(__name__)
 
 HEADER = ['unit_number', 'time'] + \
          [f'op_settings{i}' for i in range(1, 4)] + [f'sensor{i}' for i in range(1, 27)]
@@ -70,30 +66,3 @@ def create_test_set(input_folder: Path, output: Path):
         dfs.append(df)
     df_merged = pd.concat(dfs)
     df_merged.to_parquet(str(output))
-
-
-@click.command()
-@click.argument('input_folder', type=click.Path())
-@click.argument('output_folder', type=click.Path())
-def create_dataset(input_folder: Path, output_folder: Path):
-    """
-    Create a dataset from the raw data.
-
-    This will merge the training and testing files as parquet files.
-
-    Parameters
-    ----------
-    input_folder : Path
-        Input folder with the raw data.
-    output_folder : Path
-        Output folder to store the processed data, as parquet.
-    """
-    logger.info(f'Creating dataset from {input_folder} to {output_folder}')
-    Path(output_folder).mkdir(parents=True, exist_ok=True)
-
-    create_train_set(Path(input_folder), Path(output_folder) / 'df_train.parquet')
-    create_test_set(Path(input_folder), Path(output_folder) / 'df_test.parquet')
-
-
-if __name__ == '__main__':
-    create_dataset()  # pylint: disable=no-value-for-parameter

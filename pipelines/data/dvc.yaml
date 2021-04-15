@@ -1,45 +1,47 @@
 stages:
   download:
     cmd:
-      python ../../src/data/download.py
+      python ../../turbofan/data/download.py
       https://ti.arc.nasa.gov/c/6/
       ../../data/raw
     deps:
-    - https://ti.arc.nasa.gov/c/6/
-    - ../../src/data/download.py
+      - https://ti.arc.nasa.gov/c/6/
+      - ../../turbofan/data/download.py
     outs:
-    - ../../data/raw
+      - ../../data/raw
 
   create_dataset:
     cmd:
-      python ../../src/data/create_dataset.py
+      python ../../turbofan/data/create_dataset.py
       ../../data/raw
       ../../data/interim
     deps:
-    - ../../data/raw
-    - ../../src/data/create_dataset.py
+      - ../../data/raw
+      - ../../turbofan/data/create_dataset.py
+      - ../../turbofan/data/dataset.py
     outs:
-    - ../../data/interim
+      - ../../data/interim
 
   preprocess:
     cmd:
-      python ../../src/data/preprocess.py
+      python ../../turbofan/data/preprocess.py
       ../../data/interim
       ../../data/processed
     deps:
-    - ../../data/interim
-    - ../../src/data/preprocess.py
+      - ../../data/interim
+      - ../../turbofan/data/preprocess.py
     outs:
-    - ../../data/processed
+      - ../../data/processed
 
   exploration:
     cmd:
-      python ../../src/visualization/exploration.py
+      python ../../turbofan/viz/exploration.py
       ../../data/interim
       ../../reports/figures
     deps:
-    - ../../data/interim
-    - ../../src/visualization/exploration.py
+      - ../../data/interim
+      - ../../turbofan/viz/plot.py
+      - ../../turbofan/viz/exploration.py
     outs:
-    - ../../reports/figures/00_distribution_label_train.png
-    - ../../reports/figures/01_distribution_label_test.png
+      - ../../reports/figures/00_distribution_label_train.png
+      - ../../reports/figures/01_distribution_label_test.png

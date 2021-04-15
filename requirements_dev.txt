@@ -1,0 +1,10 @@
+bandit
+coverage
+coverage-badge
+flake8
+mutmut
+mypy
+pycodestyle
+pydocstyle
+pylint
+pytest
