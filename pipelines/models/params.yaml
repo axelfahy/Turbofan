@@ -1,0 +1,9 @@
+thresholds:
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+
+n_epochs: 50
+batch_size: 32

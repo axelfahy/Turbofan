@@ -1,0 +1,221 @@
+schema: '2.0'
+stages:
+  xgboost_regression:
+    cmd: python ../../turbofan/models/xgboost_regression.py ../../data/processed ../../models/regression
+      --threshold 400
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/xgboost_regression.py
+      md5: 27f5c24c4cb16efdd5ed4228fad6dde4
+      size: 4274
+    outs:
+    - path: ../../models/regression/dump
+      md5: 039df510d57cce9503250acf61f5f4a0.dir
+      size: 19003313
+      nfiles: 5
+    - path: ../../models/regression/figures/true_vs_pred_xgboost.png
+      md5: 0128d36fc896ff2fb46faa61d5173cce
+      size: 138138
+    - path: ../../models/regression/metrics/performance.json
+      md5: c01fe58853fa33d788f4684270026028
+      size: 650
+  xgboost_classification@50:
+    cmd: python ../../turbofan/models/xgboost_classification.py ../../data/processed
+      ../../models/classification/50 --threshold 50
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/xgboost_classification.py
+      md5: fb9494d8d6260974260100d6f9c2a788
+      size: 6314
+    outs:
+    - path: ../../models/classification/50/dump
+      md5: 2def226ecf84e2e3edea0c15c6797832.dir
+      size: 22842472
+      nfiles: 5
+    - path: ../../models/classification/50/figures/confusion_matrix.png
+      md5: c7a5de97437304d41ca26a622c1d1fd1
+      size: 25924
+    - path: ../../models/classification/50/figures/roc_curve.png
+      md5: 2a0fb901f39a05823ca33fbb82765137
+      size: 46275
+    - path: ../../models/classification/50/metrics/performance.json
+      md5: d93b40c3066f50bc9d6cce75987aa6f3
+      size: 1037
+  xgboost_classification@20:
+    cmd: python ../../turbofan/models/xgboost_classification.py ../../data/processed
+      ../../models/classification/20 --threshold 20
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/xgboost_classification.py
+      md5: fb9494d8d6260974260100d6f9c2a788
+      size: 6314
+    outs:
+    - path: ../../models/classification/20/dump
+      md5: b5c88d95ea9eb1fff2590149b3866684.dir
+      size: 20627850
+      nfiles: 5
+    - path: ../../models/classification/20/figures/confusion_matrix.png
+      md5: 9f0938a31526a768149db195024f25d2
+      size: 26495
+    - path: ../../models/classification/20/figures/roc_curve.png
+      md5: 33ae2b5115f649200a81ad33c5508679
+      size: 45114
+    - path: ../../models/classification/20/metrics/performance.json
+      md5: 0b51464633be0c0a4d653a50c47733ac
+      size: 1038
+  xgboost_classification@40:
+    cmd: python ../../turbofan/models/xgboost_classification.py ../../data/processed
+      ../../models/classification/40 --threshold 40
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/xgboost_classification.py
+      md5: fb9494d8d6260974260100d6f9c2a788
+      size: 6314
+    outs:
+    - path: ../../models/classification/40/dump
+      md5: 2d054eb26f469301a359ad07e95e8907.dir
+      size: 22334833
+      nfiles: 5
+    - path: ../../models/classification/40/figures/confusion_matrix.png
+      md5: d6f4b7a58a7e5aafa5ec3c7ecf2e3567
+      size: 26929
+    - path: ../../models/classification/40/figures/roc_curve.png
+      md5: 6688fb470936d52c9a4bdf4102431270
+      size: 45547
+    - path: ../../models/classification/40/metrics/performance.json
+      md5: f27b8a7f6d17a8b564f592310236788e
+      size: 1040
+  xgboost_classification@10:
+    cmd: python ../../turbofan/models/xgboost_classification.py ../../data/processed
+      ../../models/classification/10 --threshold 10
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/xgboost_classification.py
+      md5: fb9494d8d6260974260100d6f9c2a788
+      size: 6314
+    outs:
+    - path: ../../models/classification/10/dump
+      md5: 27be8142f8443b8e88375113d3d9fc07.dir
+      size: 20296089
+      nfiles: 5
+    - path: ../../models/classification/10/figures/confusion_matrix.png
+      md5: d06b41acfae474d503ff895ae8719139
+      size: 26140
+    - path: ../../models/classification/10/figures/roc_curve.png
+      md5: 833ab2c600c4c0ca862e7bbe717005c6
+      size: 44779
+    - path: ../../models/classification/10/metrics/performance.json
+      md5: df19703fe9bc9c875e5f4b205e39b6c9
+      size: 1038
+  xgboost_classification@30:
+    cmd: python ../../turbofan/models/xgboost_classification.py ../../data/processed
+      ../../models/classification/30 --threshold 30
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/xgboost_classification.py
+      md5: fb9494d8d6260974260100d6f9c2a788
+      size: 6314
+    outs:
+    - path: ../../models/classification/30/dump
+      md5: 52839d776f5b1f87fe84febdd6c4058f.dir
+      size: 22104633
+      nfiles: 5
+    - path: ../../models/classification/30/figures/confusion_matrix.png
+      md5: a19be0048ee081b3a760428a46bc4848
+      size: 26514
+    - path: ../../models/classification/30/figures/roc_curve.png
+      md5: d302475cebe4e4625216f8ee8dc3a209
+      size: 45845
+    - path: ../../models/classification/30/metrics/performance.json
+      md5: 444a49fb03f1af2198b64159ab5af7e6
+      size: 1037
+  autoencoder@percent:
+    cmd: python ../../turbofan/models/autoencoder.py ../../data/processed ../../models/autoencoder
+      --technique percent --batch_size 32 --n_epochs 50
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/autoencoder.py
+      md5: a9733b8c004c644112661af6434379d8
+      size: 4233
+    outs:
+    - path: ../../models/autoencoder/figures/ae_hist_original_percent.png
+      md5: 734bc871ff8fd3fe89e3fc4b26a0680f
+      size: 33762
+    - path: ../../models/autoencoder/figures/ae_hist_reconstructed_percent.png
+      md5: 97320b85fc36b71eddfa9679fd93d608
+      size: 33236
+    - path: ../../models/autoencoder/figures/ae_history_percent.png
+      md5: 5dc55d4636d9b9674d1ce0a9a3c00a66
+      size: 20167
+    - path: ../../models/autoencoder/figures/ae_model_percent.png
+      md5: ca4c332041cc4140a1c6d2d328cec32b
+      size: 39875
+    - path: ../../models/autoencoder/weights/ae_percent.h5
+      md5: 7398a0dd2e661aefdb72b6643c168e92
+      size: 45720
+  autoencoder@first_last:
+    cmd: python ../../turbofan/models/autoencoder.py ../../data/processed ../../models/autoencoder
+      --technique first_last --batch_size 32 --n_epochs 50
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/autoencoder.py
+      md5: a9733b8c004c644112661af6434379d8
+      size: 4233
+    outs:
+    - path: ../../models/autoencoder/figures/ae_hist_original_first_last.png
+      md5: 734bc871ff8fd3fe89e3fc4b26a0680f
+      size: 33762
+    - path: ../../models/autoencoder/figures/ae_hist_reconstructed_first_last.png
+      md5: 4290cb0679f433af646eafd0bb440963
+      size: 33235
+    - path: ../../models/autoencoder/figures/ae_history_first_last.png
+      md5: 863b15bc7438a5ef19c4d751eef24ff9
+      size: 18315
+    - path: ../../models/autoencoder/figures/ae_model_first_last.png
+      md5: ca4c332041cc4140a1c6d2d328cec32b
+      size: 39875
+    - path: ../../models/autoencoder/weights/ae_first_last.h5
+      md5: c2737b7bcadf0eada6fbfcfb86f713d8
+      size: 45720
+  autoencoder@last30:
+    cmd: python ../../turbofan/models/autoencoder.py ../../data/processed ../../models/autoencoder
+      --technique last30 --batch_size 32 --n_epochs 50
+    deps:
+    - path: ../../data/processed/df_train_with_var_norm.parquet
+      md5: a95587b625f18797430dcefc0957f7ee
+      size: 5322336
+    - path: ../../turbofan/models/autoencoder.py
+      md5: a9733b8c004c644112661af6434379d8
+      size: 4233
+    outs:
+    - path: ../../models/autoencoder/figures/ae_hist_original_last30.png
+      md5: cd8c0bb4055afe4907e1105a5ec7acbe
+      size: 34267
+    - path: ../../models/autoencoder/figures/ae_hist_reconstructed_last30.png
+      md5: f76d98872d357671b56e8cebaac629de
+      size: 33750
+    - path: ../../models/autoencoder/figures/ae_history_last30.png
+      md5: 2234d4b7883671ac3a0da934c15b9fb8
+      size: 19554
+    - path: ../../models/autoencoder/figures/ae_model_last30.png
+      md5: ca4c332041cc4140a1c6d2d328cec32b
+      size: 39875
+    - path: ../../models/autoencoder/weights/ae_last30.h5
+      md5: 4e97ab764735d6d3f549de3518f125b1
+      size: 45720

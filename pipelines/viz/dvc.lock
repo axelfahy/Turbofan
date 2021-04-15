@@ -1,0 +1,33 @@
+schema: '2.0'
+stages:
+  plot_performance_by_threshold:
+    cmd: python ../../src/viz/plot_performance_by_threshold.py ../../models/classification
+      ../../models/classification
+    deps:
+    - path: ../../models/classification/50/metrics/performance.json
+      md5: d93b40c3066f50bc9d6cce75987aa6f3
+      size: 1037
+    - path: ../../src/viz/plot_performance_by_threshold.py
+      md5: bd68346916b6589e5793d9612ff7fc03
+      size: 1476
+    outs:
+    - path: ../../models/classification/performance_by_threshold.png
+      md5: 5c7008fb28cd05851f8fb4e4bfc52843
+      size: 40758
+  performance_by_threshold:
+    cmd: python ../../turbofan/viz/performance_by_threshold.py ../../models/classification
+      ../../models/classification
+    deps:
+    - path: ../../models/classification/50/metrics/performance.json
+      md5: d93b40c3066f50bc9d6cce75987aa6f3
+      size: 1037
+    - path: ../../turbofan/viz/performance_by_threshold.py
+      md5: a47a8b24dd20c3b532c71c7766dbaddd
+      size: 1453
+    - path: ../../turbofan/viz/plot.py
+      md5: d8dc7bcc8569ce73ea95297b60eb57fa
+      size: 3811
+    outs:
+    - path: ../../models/classification/performance_by_threshold.png
+      md5: c0072dcecd5bc9dceb7baee8717c484d
+      size: 40750

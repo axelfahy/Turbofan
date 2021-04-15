@@ -1,0 +1,35 @@
+stages:
+  xgboost_regression:
+    cmd:
+      python ../../turbofan/models/xgboost_regression.py
+      ../../data/processed
+      ../../models/regression
+      --threshold 400
+    deps:
+      - ../../turbofan/models/xgboost_regression.py
+      - ../../data/processed/df_train_with_var_norm.parquet
+    outs:
+      - ../../models/regression/figures/true_vs_pred_xgboost.png
+      - ../../models/regression/dump
+    metrics:
+      - ../../models/regression/metrics/performance.json:
+          cache: false
+
+  xgboost_classification:
+    foreach: ${thresholds}
+    do:
+      cmd:
+        python ../../turbofan/models/xgboost_classification.py
+        ../../data/processed
+        ../../models/classification/${item}
+        --threshold ${item}
+      deps:
+        - ../../turbofan/models/xgboost_classification.py
+        - ../../data/processed/df_train_with_var_norm.parquet
+      outs:
+        - ../../models/classification/${item}/figures/confusion_matrix.png
+        - ../../models/classification/${item}/figures/roc_curve.png
+        - ../../models/classification/${item}/dump
+      metrics:
+        - ../../models/classification/${item}/metrics/performance.json:
+            cache: false

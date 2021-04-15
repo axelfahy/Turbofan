@@ -1,0 +1,12 @@
+stages:
+  performance_by_threshold:
+    cmd:
+      python ../../turbofan/viz/performance_by_threshold.py
+      ../../models/classification
+      ../../models/classification
+    deps:
+      - ../../models/classification/50/metrics/performance.json
+      - ../../turbofan/viz/performance_by_threshold.py
+      - ../../turbofan/viz/plot.py
+    outs:
+      - ../../models/classification/performance_by_threshold.png
